@@ -28,6 +28,7 @@ export const useNotifications = (userId?: string, maxNotifications = 50) => {
       const notificationData: Notification[] = [];
 
       snapshot.docChanges().forEach((change) => {
+        console.log({ change, data: change.doc.data() });
         if (change.type === "added") {
           const data = change.doc.data();
           const notification = {

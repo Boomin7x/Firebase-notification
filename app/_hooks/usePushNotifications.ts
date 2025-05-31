@@ -34,7 +34,8 @@ export const usePushNotifications = () => {
       if (permission === "granted" && messaging) {
         // Get FCM token
         const fcmToken = await getToken(messaging, {
-          vapidKey: "your-vapid-key", // Add your VAPID key here
+          vapidKey:
+            "BBl6XHc58B7m54cvcaGA-1piIoFE5GX5C8eONhkvMJYwZGHTUGKeuoWzTBwWgW8u41bMJMULQ9J6YVs_--zaox4", // Add your VAPID key here
         });
 
         if (fcmToken) {

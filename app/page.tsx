@@ -25,17 +25,9 @@ const HomePage: React.FC = () => {
       error: "Something went wrong. Please try again.",
     };
 
+    // alert("Window is open for notificationss");
     try {
       await createNotification(titles[type], messages[type], type, userId);
-      if ("Notification" in window) {
-        const permission = await Notification.requestPermission();
-        if (permission === "granted") {
-          new Notification("Test Notification", {
-            body: "This is a test notification to verify functionality",
-            icon: "/favicon.ico",
-          });
-        }
-      }
     } catch (error) {
       console.error("Failed to create notification:", error);
     }
