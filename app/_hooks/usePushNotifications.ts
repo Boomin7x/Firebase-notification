@@ -10,16 +10,28 @@ export const usePushNotifications = () => {
   const [isSupported, setIsSupported] = useState(false);
 
   useEffect(() => {
-    // Check if notifications are supported
-    setIsSupported(
-      typeof window !== "undefined" &&
-        "Notification" in window &&
-        "serviceWorker" in navigator
-    );
+    const checkSupport = async () => {
+      try {
+        // Check if notifications are supported
+        const supported =
+          (typeof window !== "undefined" &&
+            "Notification" in window &&
+            "serviceWorker" in navigator &&
+            window.location.protocol === "https:") ||
+          window.location.hostname === "localhost";
 
-    if (typeof window !== "undefined") {
-      setPermission(Notification.permission);
-    }
+        setIsSupported(supported);
+
+        if (typeof window !== "undefined") {
+          setPermission(Notification.permission);
+        }
+      } catch (error) {
+        console.error("Error checking notification support:", error);
+        setIsSupported(false);
+      }
+    };
+
+    checkSupport();
   }, []);
 
   const requestPermission = async () => {
@@ -54,45 +66,49 @@ export const usePushNotifications = () => {
     }
   };
 
-  const browserNotification = (
-    title: string,
-    options?: NotificationOptions
-  ) => {
-    if (permission === "granted") {
-      new Notification(title, {
-        // icon: "/notification-icon.png", // Add an icon to your public folder
-        // badge: "/notification-badge.png",
-        tag: "notification",
-        // renotify: true,
-        ...options,
-      });
-    }
-  };
-
-  const showBrowserNotification = useCallback(browserNotification, [
-    permission,
-  ]);
+  const showBrowserNotification = useCallback(
+    (title: string, options?: NotificationOptions) => {
+      if (permission === "granted") {
+        try {
+          new Notification(title, {
+            tag: "notification",
+            requireInteraction: false,
+            ...options,
+          });
+        } catch (error) {
+          console.error("Error showing browser notification:", error);
+        }
+      }
+    },
+    [permission]
+  );
 
   // Listen for foreground messages
   useEffect(() => {
     if (messaging && permission === "granted") {
-      const unsubscribe = onMessage(messaging, (payload) => {
-        console.log("Foreground message received:", payload);
+      try {
+        const unsubscribe = onMessage(messaging, (payload) => {
+          console.log("Foreground message received:", payload);
 
-        if (payload.notification) {
-          showBrowserNotification(
-            payload.notification.title || "New Notification",
-            {
-              body: payload.notification.body,
-              icon: payload.notification.icon,
-              data: payload.data,
-            }
-          );
-        }
-      });
+          if (payload.notification) {
+            showBrowserNotification(
+              payload.notification.title || "New Notification",
+              {
+                body: payload.notification.body,
+                icon: payload.notification.icon,
+                data: payload.data,
+              }
+            );
+          }
+        });
 
-      if (typeof unsubscribe === "function") {
-        return () => unsubscribe();
+        return () => {
+          if (typeof unsubscribe === "function") {
+            unsubscribe();
+          }
+        };
+      } catch (error) {
+        console.error("Error setting up message listener:", error);
       }
     }
   }, [messaging, permission, showBrowserNotification]);
