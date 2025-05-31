@@ -31,6 +31,8 @@ export const usePushNotifications = () => {
       const permission = await Notification.requestPermission();
       setPermission(permission);
 
+      console.log("requested permission:", permission);
+
       if (permission === "granted" && messaging) {
         // Get FCM token
         const fcmToken = await getToken(messaging, {

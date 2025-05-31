@@ -49,12 +49,9 @@ export const useNotifications = (userId?: string, maxNotifications = 50) => {
           });
           if (!loading) {
             // Show browser notification for new notifications
-            if (
-              permission === "granted" &&
-              (!userId ||
-                !notification.userId ||
-                notification.userId === userId)
-            ) {
+            if (permission === "granted") {
+              console.log("Showing browser notification:", notification);
+              //   alert("catrured");
               showBrowserNotification(notification.title, {
                 body: notification.message,
                 tag: `notification-${notification.id}`,
