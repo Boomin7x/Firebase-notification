@@ -85,7 +85,9 @@ export const usePushNotifications = () => {
         }
       });
 
-      return unsubscribe;
+      if (typeof unsubscribe === "function") {
+        return () => unsubscribe();
+      }
     }
   }, [messaging, permission]);
 

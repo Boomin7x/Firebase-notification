@@ -28,7 +28,6 @@ export const useNotifications = (userId?: string, maxNotifications = 50) => {
       const notificationData: Notification[] = [];
 
       snapshot.docChanges().forEach((change) => {
-        console.log({ change, data: change.doc.data() });
         if (change.type === "added") {
           const data = change.doc.data();
           const notification = {
@@ -42,6 +41,12 @@ export const useNotifications = (userId?: string, maxNotifications = 50) => {
           };
 
           // Check if this is a new notification (not from initial load)
+          console.log({
+            loading,
+            permission,
+            notification,
+            userId,
+          });
           if (!loading) {
             // Show browser notification for new notifications
             if (
