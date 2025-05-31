@@ -48,25 +48,33 @@ const HomePage: React.FC = () => {
           <h2 className="text-lg font-semibold mb-4">Test Notifications</h2>
           <div className="flex flex-wrap gap-3">
             <button
-              onClick={() => handleCreateTestNotification("info")}
+              onClick={() => {
+                handleCreateTestNotification("info");
+              }}
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
             >
               Create Info
             </button>
             <button
-              onClick={() => handleCreateTestNotification("success")}
+              onClick={() => {
+                handleCreateTestNotification("success");
+              }}
               className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg"
             >
               Create Success
             </button>
             <button
-              onClick={() => handleCreateTestNotification("warning")}
+              onClick={() => {
+                handleCreateTestNotification("warning");
+              }}
               className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg"
             >
               Create Warning
             </button>
             <button
-              onClick={() => handleCreateTestNotification("error")}
+              onClick={() => {
+                handleCreateTestNotification("error");
+              }}
               className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
             >
               Create Error

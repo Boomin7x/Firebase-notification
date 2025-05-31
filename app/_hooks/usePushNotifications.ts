@@ -1,5 +1,5 @@
 // hooks/usePushNotifications.ts
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getToken, onMessage } from "firebase/messaging";
 import { messaging } from "../utils/firebase";
 
@@ -54,7 +54,7 @@ export const usePushNotifications = () => {
     }
   };
 
-  const showBrowserNotification = (
+  const browserNotification = (
     title: string,
     options?: NotificationOptions
   ) => {
@@ -68,6 +68,10 @@ export const usePushNotifications = () => {
       });
     }
   };
+
+  const showBrowserNotification = useCallback(browserNotification, [
+    permission,
+  ]);
 
   // Listen for foreground messages
   useEffect(() => {
@@ -91,7 +95,7 @@ export const usePushNotifications = () => {
         return () => unsubscribe();
       }
     }
-  }, [messaging, permission]);
+  }, [messaging, permission, showBrowserNotification]);
 
   return {
     permission,

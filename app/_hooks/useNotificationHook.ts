@@ -89,7 +89,7 @@ export const useNotifications = (userId?: string, maxNotifications = 50) => {
     });
 
     return () => unsubscribe();
-  }, [userId, maxNotifications, showBrowserNotification, permission, loading]);
+  }, [userId, maxNotifications, permission]);
 
   return { notifications, loading };
 };

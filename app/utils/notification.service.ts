@@ -7,6 +7,7 @@ export const createNotification = async (
   type: "info" | "success" | "warning" | "error" = "info",
   userId?: string
 ) => {
+  console.log(type);
   try {
     const docRef = await addDoc(collection(db, "notifications"), {
       title,
