@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@firebasegen/default-connector": "link:dataconnect-generated/js/default-connector",
     "date-fns": "^4.1.0",
     "firebase": "^11.8.1",
     "next": "15.3.3",
