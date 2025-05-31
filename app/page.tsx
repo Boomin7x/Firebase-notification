@@ -1,6 +1,8 @@
+// pages/index.tsx (Main page example)
 "use client";
 import React, { useState } from "react";
 import { createNotification } from "./utils/notification.service";
+import NotificationPermission from "./_component/NotificationPermission";
 import NotificationCenter from "./_component/NotificationCenter";
 
 const HomePage: React.FC = () => {
@@ -37,6 +39,9 @@ const HomePage: React.FC = () => {
           Real-time Notification System
         </h1>
 
+        {/* Notification Permission Component */}
+        <NotificationPermission />
+
         {/* Test buttons */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
           <h2 className="text-lg font-semibold mb-4">Test Notifications</h2>
@@ -66,6 +71,12 @@ const HomePage: React.FC = () => {
               Create Error
             </button>
           </div>
+          <p className="text-sm text-gray-600 mt-3">
+            💡 Click any button above to create a test notification. If browser
+            notifications are enabled,
+            {`you'll`} see both an in-app notification and a browser
+            notification.
+          </p>
         </div>
 
         {/* Notification Center */}

@@ -1,4 +1,3 @@
-// components/NotificationItem.tsx
 import React from "react";
 import { formatDistanceToNow } from "date-fns";
 import { Notification } from "../utils/types";

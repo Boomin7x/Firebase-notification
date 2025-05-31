@@ -15,3 +15,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+
+import { getMessaging } from "firebase/messaging";
+
+// Initialize Firebase Cloud Messaging
+let messaging: any = null;
+if (typeof window !== "undefined") {
+  messaging = getMessaging(app);
+}
+
+export { messaging };

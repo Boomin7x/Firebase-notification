@@ -1,6 +1,6 @@
-"use client";
 import React, { useState } from "react";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
+
 import NotificationItem from "./NotificationItem";
 import { useNotifications } from "../_hooks/useNotificationHook";
 import { db } from "../utils/firebase";
