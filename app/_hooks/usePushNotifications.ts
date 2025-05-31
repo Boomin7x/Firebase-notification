@@ -57,8 +57,8 @@ export const usePushNotifications = () => {
   ) => {
     if (permission === "granted") {
       new Notification(title, {
-        icon: "/notification-icon.png", // Add an icon to your public folder
-        badge: "/notification-badge.png",
+        // icon: "/notification-icon.png", // Add an icon to your public folder
+        // badge: "/notification-badge.png",
         tag: "notification",
         // renotify: true,
         ...options,
