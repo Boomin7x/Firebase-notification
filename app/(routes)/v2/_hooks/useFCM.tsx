@@ -9,24 +9,28 @@ const useFCM = () => {
   const [fcmToken, setFcmToken] = useState<string>();
   useEffect(() => {
     const getPermission = async () => {
-      await requestPermission((permission) => setPermission(permission));
+      const perm = await requestPermission();
+      if (!perm) {
+        console.error("Notification permission request was denied");
+        return;
+      }
       console.log("requested permission:", permission);
+      setPermission(perm);
 
       if (permission === "granted") {
-        await getTokenFn((token) => setFcmToken(token));
+        const newToken = await getTokenFn();
+        setFcmToken(newToken);
         console.log("token baby:", fcmToken);
+        await getInaAppMessages();
       }
     };
     getPermission();
-    getInaAppMessages();
   }, [permission, fcmToken]);
 
   //   console.log({ permission });
 
   return {
     permission,
-    requestPerm: () =>
-      requestPermission((permission) => setPermission(permission)),
   };
 };
 

@@ -3,13 +3,13 @@ import React from "react";
 import useFCM from "./_hooks/useFCM";
 
 const V2Page = () => {
-  const { permission, requestPerm } = useFCM();
+  const { permission } = useFCM();
   return (
     <div className="p-4 w-screen h-screen overflow-y-auto overflow-x-hidden">
       <div className=" bg-gradient-to-b p-4 rounded-lg from-gray-200 to-white size-full">
         <div>Notification V2 Test</div>
         <button>
-          <span className="text-blue-500 hover:underline" onClick={requestPerm}>
+          <span className="text-blue-500 hover:underline">
             Request Notification Permission
           </span>
         </button>

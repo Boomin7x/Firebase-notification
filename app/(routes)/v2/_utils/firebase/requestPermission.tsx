@@ -1,10 +1,8 @@
-export const requestPermission = async (
-  getPermissions: (permission: NotificationPermission) => void
-) => {
+export const requestPermission = async () => {
   const perm = await Notification.requestPermission();
   if (!perm) {
     console.error("Notification permission request was denied");
     return;
   }
-  getPermissions(perm);
+  return perm;
 };

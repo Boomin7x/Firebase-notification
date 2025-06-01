@@ -12,6 +12,12 @@ export const getInaAppMessages = async () => {
   }
   onMessage(messaging, (payload) => {
     console.log("Message received. ", payload);
+    const { title, body } = payload.notification ?? {};
+    if (title || body) {
+      new Notification(title || "New message", {
+        body: body || "",
+      });
+    }
     // ...
     // You can handle the in-app message here, e.g., show a notification or update UI
   });
