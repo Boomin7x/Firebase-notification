@@ -28,3 +28,6 @@ export const getTokenFn = async (onGetToken: (token: string) => void) => {
       // ...
     });
 };
+
+// Export the messaging promise as v2Messaging
+export const v2Messaging = messaging;

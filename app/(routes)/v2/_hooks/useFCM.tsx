@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTokenFn } from "../_utils/firebase/conficureFCM";
 import { requestPermission } from "../_utils/firebase/requestPermission";
+import { getInaAppMessages } from "../_utils/firebase/inAppMessages";
 
 const useFCM = () => {
   const [permission, setPermission] =
@@ -17,6 +18,7 @@ const useFCM = () => {
       }
     };
     getPermission();
+    getInaAppMessages();
   }, [permission, fcmToken]);
 
   //   console.log({ permission });
