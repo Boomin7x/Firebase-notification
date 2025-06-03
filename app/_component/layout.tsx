@@ -1,5 +1,6 @@
 "use client";
 import React, { ReactNode, useEffect } from "react";
+import useFCM from "../(routes)/v2/_hooks/useFCM";
 
 const MailLayout = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
@@ -12,6 +13,8 @@ const MailLayout = ({ children }: { children: ReactNode }) => {
         );
     }
   }, []);
+
+  const { permission } = useFCM();
   return <>{children}</>;
 };
 

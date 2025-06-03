@@ -1,9 +1,7 @@
 "use client";
-import React from "react";
-import useFCM from "./_hooks/useFCM";
 
 const V2Page = () => {
-  const { permission } = useFCM();
+  // const { permission } = useFCM();
   return (
     <div className="p-4 w-screen h-screen overflow-y-auto overflow-x-hidden">
       <div className=" bg-gradient-to-b p-4 rounded-lg from-gray-200 to-white size-full">
@@ -13,7 +11,7 @@ const V2Page = () => {
             Request Notification Permission
           </span>
         </button>
-        <div>{permission}</div>
+        {/* <div>{permission}</div> */}
         v2Page
       </div>
     </div>
