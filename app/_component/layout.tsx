@@ -14,7 +14,7 @@ const MailLayout = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  const { permission } = useFCM();
+  const {} = useFCM();
   return <>{children}</>;
 };
 
