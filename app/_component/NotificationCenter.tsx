@@ -1,9 +1,10 @@
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 
-import { useNotifications } from "../_hooks/useNotificationHook";
+// import { useNotifications } from "../_hooks/useNotificationHook";
 import { db } from "../utils/firebase";
 import NotificationItem from "./NotificationItem";
+import { Notification } from "../utils/types";
 
 interface NotificationCenterProps {
   userId?: string;
@@ -11,12 +12,12 @@ interface NotificationCenterProps {
 }
 
 const NotificationCenter: React.FC<NotificationCenterProps> = ({
-  userId,
+  // userId,
   className = "",
 }) => {
-  const { notifications, loading } = useNotifications(userId);
-  //   const notifications: Notification[] = [];
-  //   const loading = false;
+  // const { notifications, loading } = useNotifications(userId);
+  const notifications: Notification[] = [];
+  const loading = false;
   const [filter, setFilter] = useState<"all" | "unread">("all");
 
   const handleMarkAsRead = async (id: string) => {

@@ -12,7 +12,7 @@ const MailLayout = ({ children }: { children: ReactNode }) => {
         );
     }
   }, []);
-  return <div>{children}</div>;
+  return <>{children}</>;
 };
 
 export default MailLayout;
